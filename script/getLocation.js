@@ -10,3 +10,8 @@ xhttp.onreadystatechange = function() {
 };
 xhttp.open("GET", "http://ip-api.com/json/", true);
 xhttp.send();
+
+
+// first we find location from ip
+// then we find lat and long from city name using open cage
+// then find weather and place data
