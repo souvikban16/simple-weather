@@ -103,10 +103,36 @@ function getWeather(lat, long) {
             // console.log(xhttp.responseText);
             const resp = JSON.parse(xhttp.responseText);
             console.log(resp);
+            parseData(resp);
         }
     };
     xhttp.open("GET", weatherRequestString, true);
     xhttp.send();
+
+
+}
+
+
+function parseData(resp) {
+    var temp = Math.round(resp.current.temp);
+    var condition = resp.current.weather[0].description;
+    var speed = Math.round(resp.current.wind_speed * 3.6);
+    var tommorow = resp.daily[0].weather[0].description;
+    var dayAfterTommorow = resp.daily[1].weather[0].description;
+    var dayAfterThat = resp.daily[2].weather[0].description;
+    console.log(temp, condition, speed, tommorow, dayAfterTommorow, dayAfterThat);
+
+    fillData(temp, condition, speed, tommorow, dayAfterTommorow, dayAfterThat);
+}
+
+
+function fillData(temp, condition, speed, tommorow, dayAfterTommorow, dayAfterThat) {
+    document.getElementById("temp").innerHTML = temp + "°";
+    document.getElementById("speed").innerHTML = speed + " kmph";
+    document.getElementById("condition").innerHTML = condition;
+    document.getElementById("day1").innerHTML = tommorow;
+    document.getElementById("day2").innerHTML = dayAfterTommorow;
+    document.getElementById("day3").innerHTML = dayAfterThat;
 
 }
 
