@@ -46,7 +46,30 @@
 // xhttp.send();
 
 
-function getCity() {
+
+
+function getIP() {
+    var xhttp = new XMLHttpRequest();;
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            // Typical action to be performed when the document is ready:
+            //    document.getElementById("demo").innerHTML = xhttp.responseText;
+            // const resp = JSON.parse(xhttp.responseText);
+            var ip = xhttp.responseText;
+            console.log(ip)
+            getCity(ip)
+        }
+    };
+    xhttp.open("GET", "https://api.ipify.org", true);
+    xhttp.send();
+
+}
+
+
+
+
+function getCity(ip) {
+    var ipRequestString = "https://ipapi.co/" + ip + "/json/"
     var xhttp = new XMLHttpRequest();
     var city = "undefined";
     xhttp.onreadystatechange = function() {
@@ -60,7 +83,7 @@ function getCity() {
             getCoordinates(city);
         }
     };
-    xhttp.open("GET", "http://ip-api.com/json/", true);
+    xhttp.open("GET", ipRequestString, true);
     xhttp.send();
 }
 
@@ -137,3 +160,4 @@ function fillData(temp, condition, speed, tommorow, dayAfterTommorow, dayAfterTh
 }
 
 getCity();
+getIP();
