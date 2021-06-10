@@ -159,5 +159,5 @@ function fillData(temp, condition, speed, tommorow, dayAfterTommorow, dayAfterTh
 
 }
 
-getCity();
+// getCity();
 getIP();
