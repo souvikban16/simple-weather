@@ -165,7 +165,7 @@ function fillData(temp, condition, speed, tommorow, dayAfterTommorow, dayAfterTh
 // get background from unsplash
 
 function getBackground(condition, city) {
-    var imageRequestString = "https://api.unsplash.com/photos/random?client_id=61jS2ufdQp3jGWyCDdmXbkpTx-6tycakROUWd3A7Al0&orientation=landscape&query=" + condition + " " + city;
+    var imageRequestString = "https://api.unsplash.com/photos/random?client_id=61jS2ufdQp3jGWyCDdmXbkpTx-6tycakROUWd3A7Al0&orientation=landscape&query=" + condition;
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
