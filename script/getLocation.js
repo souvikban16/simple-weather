@@ -105,14 +105,14 @@ function getCoordinates(city) {
             lat = resp.results[0].geometry.lat;
             long = resp.results[0].geometry.lng;
             console.log(lat, long);
-            getWeather(lat, long);
+            getWeather(lat, long, city);
         }
     };
     xhttp.open("GET", coordinateRequestString, true);
     xhttp.send();
 }
 
-function getWeather(lat, long) {
+function getWeather(lat, long, city) {
 
     var weatherRequestString = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + long + "&exclude={part}&appid=90589e3873dc040fbc7af711a3bc474e&units=metric";
     var xhttp = new XMLHttpRequest();
@@ -126,7 +126,7 @@ function getWeather(lat, long) {
             // console.log(xhttp.responseText);
             const resp = JSON.parse(xhttp.responseText);
             console.log(resp);
-            parseData(resp);
+            parseData(resp, city);
         }
     };
     xhttp.open("GET", weatherRequestString, true);
@@ -136,7 +136,7 @@ function getWeather(lat, long) {
 }
 
 
-function parseData(resp) {
+function parseData(resp, city) {
     var temp = Math.round(resp.current.temp);
     var condition = resp.current.weather[0].description;
     var speed = Math.round(resp.current.wind_speed * 3.6);
@@ -145,11 +145,11 @@ function parseData(resp) {
     var dayAfterThat = resp.daily[2].weather[0].description;
     console.log(temp, condition, speed, tommorow, dayAfterTommorow, dayAfterThat);
 
-    fillData(temp, condition, speed, tommorow, dayAfterTommorow, dayAfterThat);
+    fillData(temp, condition, speed, tommorow, dayAfterTommorow, dayAfterThat, city);
 }
 
 
-function fillData(temp, condition, speed, tommorow, dayAfterTommorow, dayAfterThat) {
+function fillData(temp, condition, speed, tommorow, dayAfterTommorow, dayAfterThat, city) {
     document.getElementById("temp").innerHTML = temp + "°";
     document.getElementById("speed").innerHTML = speed + " kmph";
     document.getElementById("condition").innerHTML = condition;
@@ -157,15 +157,15 @@ function fillData(temp, condition, speed, tommorow, dayAfterTommorow, dayAfterTh
     document.getElementById("day2").innerHTML = dayAfterTommorow;
     document.getElementById("day3").innerHTML = dayAfterThat;
 
-    getBackground(condition);
+    getBackground(condition, city);
 }
 
 
 
 // get background from unsplash
 
-function getBackground(condition) {
-    var imageRequestString = "https://api.unsplash.com/photos/random?client_id=61jS2ufdQp3jGWyCDdmXbkpTx-6tycakROUWd3A7Al0&orientation=landscape&query=" + condition;
+function getBackground(condition, city) {
+    var imageRequestString = "https://api.unsplash.com/photos/random?client_id=61jS2ufdQp3jGWyCDdmXbkpTx-6tycakROUWd3A7Al0&orientation=landscape&query=" + condition + " " + city;
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
