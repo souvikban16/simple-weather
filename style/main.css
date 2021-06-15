@@ -1,7 +1,7 @@
-.card{
+.card {
     font-family: 'Kumbh Sans', sans-serif;
     background-color: bisque;
-    color:brown;
+    color: brown;
     /* height: 20rem; */
     /* width: 40rem; */
     padding: 5rem;
@@ -9,61 +9,79 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
+    opacity: 70%;
 }
 
-.temp{
+.temp {
     font-size: 7rem;
 }
 
-.condition{
+.condition {
     font-size: 1rem;
 }
 
-.elements{
+.elements {
     padding-right: 5rem;
 }
 
-.location{
+.location {
     opacity: 20%;
     font-size: 3rem;
     padding-bottom: 3rem;
 }
 
-.flex-container{
+.flex-container {
     display: flex;
     direction: row;
     justify-content: center;
 }
 
-.forecast{
+.forecast {
     /* padding-top: 2rem; */
 }
 
-.day{
+.day {
     padding-top: 2rem;
 }
 
-.daylabel{
+.daylabel {
     opacity: 50%;
     padding-bottom: 0.50rem;
 }
 
-.wind{
+.wind {
     padding-top: 2rem;
     font-size: 2rem;
 }
 
-.unit{
+.unit {
     opacity: 50%;
     font-size: 1rem;
 }
 
-/* .searchbox{
-    font-size: 2rem;
-    border-radius: 1rem;
-    background-color: bisque;
-    color: grey;
-    width: 20%;
-    padding: 1rem;
-} */
+body,
+html {
+    height: 100%;
+    margin: 0px;
+}
+
+.bg {
+    /* The image used */
+    /* background-image: url("/alex-gindin-ifpBOcQlhoY-unsplash.jpg"); */
+    /* Full height */
+    height: 100%;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.hotlink {
+    color: brown;
+}
+
+.hotlink a {
+    /* text-decoration: none; */
+    color: brown;
+}

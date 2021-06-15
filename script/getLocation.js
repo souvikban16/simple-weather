@@ -157,7 +157,32 @@ function fillData(temp, condition, speed, tommorow, dayAfterTommorow, dayAfterTh
     document.getElementById("day2").innerHTML = dayAfterTommorow;
     document.getElementById("day3").innerHTML = dayAfterThat;
 
+    getBackground(condition);
 }
+
+
+
+// get background from unsplash
+
+function getBackground(condition) {
+    var imageRequestString = "https://api.unsplash.com/photos/random?client_id=61jS2ufdQp3jGWyCDdmXbkpTx-6tycakROUWd3A7Al0&orientation=landscape&query=" + condition;
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            const resp = JSON.parse(xhttp.responseText);
+            console.log(resp);
+            var urlRequest = "\"" + resp.urls.regular + "\"";
+            console.log(urlRequest)
+            document.getElementById("bg").style.backgroundImage = "url(" + urlRequest + ")";
+        }
+    };
+    xhttp.open("GET", imageRequestString, true);
+    xhttp.send();
+    // document.getElementById("bg").style.backgroundImage = "url('/alex-gindin-ifpBOcQlhoY-unsplash.jpg')";
+}
+
+
+
 
 // getCity();
 getIP();
